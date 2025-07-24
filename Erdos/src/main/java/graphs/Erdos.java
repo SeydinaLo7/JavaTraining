@@ -43,18 +43,20 @@ public class Erdos {
 	public Erdos(ArrayList<String []> articlesAuthors) {
 		// TODO
 		Hash.put(erdos,0);
-		for (int i = 1; i <articlesAuthors.size() ; i++) {
+		int res =1;
+		for (int i = 0; i <articlesAuthors.size() ; i++) {
 			for (String a: articlesAuthors.get(i)) {
-				if (!Hash.containsKey(a)){
-					Hash.put(a,i);
+				if (!Hash.containsKey(a) && res+i <=2){
+					Hash.put(a,i+res);
 				}else{
-					;
+					if (!Hash.containsKey(a)){
+						Hash.put(a,i);
+					}
 				}
 			}
 
 		}
-		System.out.printf(String.valueOf(Hash));
-
+		//System.out.printf(String.valueOf(Hash));
 	}
 
 	/**
