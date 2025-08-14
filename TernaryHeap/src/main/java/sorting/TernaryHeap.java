@@ -55,6 +55,8 @@ public class TernaryHeap {
     // Array representing the heap. This is where all the values must be added
     // let this variable protected so that it can be accessed from the test suite
     protected int[] content;
+    private int size;
+
 
 
 
@@ -64,6 +66,8 @@ public class TernaryHeap {
      */
     public TernaryHeap(int capacity) {
         // TODO
+        this.content = new int[capacity];
+        size = 0;
     }
 
     /**
@@ -71,7 +75,7 @@ public class TernaryHeap {
      */
     public int size() {
         // TODO
-         return -1;
+         return size;
     }
 
 
@@ -82,6 +86,8 @@ public class TernaryHeap {
      */
     public void insert(int x) {
         // TODO
+        content[size]=x;
+        size++;
         
     }
 

@@ -56,7 +56,8 @@ public class Erdos {
 			}
 
 		}
-		//System.out.printf(String.valueOf(Hash));
+
+		System.out.printf(String.valueOf(Hash));
 	}
 
 	/**

@@ -1,3 +1,6 @@
+package searching;
+
+import java.util.HashMap;
 
 /**
  * We are interested in the implementation of an LRU cache,
@@ -55,6 +58,21 @@
 public class LRUCache<K,V> {
 
     private int capacity;
+    private class Node {
+        K key;
+        V value;
+        Node prev;
+        Node next;
+
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+    private HashMap<Integer, Node> map = new HashMap<>();
+    private Node list;
+    int size = 0;
+    int change =0;
 
 
     public LRUCache(int capacity) {
@@ -62,10 +80,31 @@ public class LRUCache<K,V> {
     }
 
     public V get(K key) {
-         return null;
+        for ( Node a: map.values()) {
+            if (a.key==key){
+                return a.value;
+            }
+        }
+        change++;
+        return null;
     }
 
     public void put(K key, V value) {
+        if (size<3){
+            map.put(size, new Node(key, value));
+            size++;
+        }else{
+            if (change<3 ){
+                map.remove(change);
+                map.put(change,new Node(key, value));
+                change++;
+            }else {
+                change=0;
+
+            }
+        }
+        ;
+
     }
 
 }

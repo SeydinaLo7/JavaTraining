@@ -1,6 +1,5 @@
-package sorting;
-
-import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * You're a photographer for a soccer meet.
@@ -8,10 +7,9 @@ import java.lang.reflect.Array;
  * All teams have the same number of players.
  * A team photo consists of a front row of players and
  * a back row of players.
- * In order to be visible, a player in the back row must be taller (not equal thus)
- * than the player in front of him.
+ * In order to be visible, a player in the back row must be taller than the player in front of him.
  * All players in a row must be from the same team.
- * 
+ *
  * You must design an algorithm that takes as input two teams (their heights) and checks if it is
  * possible to arrange them to take a photo given the constraints.
  * If so, your method must return the
@@ -23,20 +21,56 @@ import java.lang.reflect.Array;
  * Feel free to use existing java classes.
  */
 public class Photo {
-    
+
     /**
      * This method checks if there is an arrangement of team A and B such that
      * a photo can be taken. If this is the case, it returns the sum of the
      * (absolute) difference between the players placed on the same spot (one
      * behind the other). Your method must run in O(n log(n)) with n the size
      * of the teams.
-     * 
+     *
      * @param teamA height of the players in team A
      * @param teamB height of the players in team B
-     * @return the sum of the difference between players on the same spot. If 
+     * @return the sum of the difference between players on the same spot. If
      *         no arrangement can be found, returns -1
      */
     public static int canTakePictures(int [] teamA, int [] teamB) {
-         return -2;
+        int result =0;
+        List<Integer>list= new ArrayList<>();
+        String check = Who(teamA,teamB);
+        if (check== "B"){
+            for (int i =0; i< teamA.length;i++){
+                list.add(teamB[i]-teamA[i]);
+            }
+        }else if (check=="A"){
+            for (int i =0; i< teamA.length;i++){
+                list.add(teamA[i]-teamB[i]);
+            }
+        }else{
+            return -1;
+        }
+        for (Integer i : list){
+            result+=i;
+        }
+        return result;
+    }
+
+    public static String Who(int [] teamA, int [] teamB){
+        int firstrowA =0;
+        int firstrowB =0;
+        for (int i =0; i< teamA.length;i++){
+            if (teamA[i]<teamB[i]){
+                firstrowB++;
+            }else{
+                firstrowA++;
+            }
+        }
+        if (firstrowA<firstrowB){
+            return "B";
+        }else if (firstrowA>firstrowB){
+            return "A";
+        }else{
+            return "C";
+        }
     }
 }
